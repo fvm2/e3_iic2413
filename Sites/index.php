@@ -67,6 +67,13 @@
                     <input class='btn' type='submit' value='Consultar'>
                 </form>
         </div>
+
+        <div class='container'>
+            <h3>Ver todos los proveedores</h3>
+                <form  action='todos_proveedores.php' method='GET'>
+                    <input class='btn' type='submit' style="background-color:#F0F8FF" value='proveedores'>
+                </form>
+        </div>
     
     </div>
   <br>
