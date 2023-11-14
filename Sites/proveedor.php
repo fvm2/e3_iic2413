@@ -3,10 +3,8 @@
 <body>
     <div class='main'>
         <h1 class='title' style="color:#008080" align="center">Nombre proveedor</h1>
-        <p style="text-align:center;">
-          En esta pagina debe haber un listados de todos los proveedores con un link 
-          que lleve a una pagina con todos sus datos 
-        </p>
+        
+        <!-- -->
         <!-- si es de Videojuegos-->
         <div class="card" style="width: 18rem; margin-right: 10rem; margin-left: 10rem;" >
             <div class="card-body">
@@ -22,8 +20,12 @@
                 <p class="card-text">Cantidad de Series</p>
             </div>
         </div>
+        <br>
+        <br>
 
+        <!-- Muestra las 3 recomendaciones más populares de la plataforma-->
         <div class="row" style="margin-right: 1rem; margin-left: 1rem;">
+            <!-- si es de streaming debe ser 3 series y 3 películas-->
             <h3>Recomendados</h3>
             <div class="col-sm-3 ">
                 <div class="card">
@@ -62,6 +64,23 @@
             </div>
         </div>
 
+        <br>
+        <br>
+        <!-- Form -->
+        <div class='container' style="width: 70%">
+            <h3>Ver base de datos 1</h3>
+            <form  action='./queries/prodecimiento01.php' method='GET'>
+            <div class="mb-3">
+                <label for="nombreProveedor" class="form-label">Nombre del proveedor</label>
+                <input type="text" class="form-control form-control-lg" id="nombreProveedor" placeholder="proovedor">
+            </div>
+            <div class="mb-3">
+                <label for="nombreEvento" class="form-label">Nombre del contenido de entretenimiento</label>
+                <input type="text" class="form-control form-control-lg" id="nombreEvento" placeholder="peliculas, series o videojuegos">
+            </div>
+                <input class='btn' type='submit' value='Consultar'>
+            </form>
+        </div>
     </div>
   <br>
   <br>
