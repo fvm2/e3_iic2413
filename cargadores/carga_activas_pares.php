@@ -18,7 +18,7 @@
     $logFile = 'error_log.txt';
 
     // Get csv file
-    if (($handle = fopen("./data/pares/filtered_data/activas.csv", "r")) !== FALSE) {
+    if (($handle = fopen("data/pares/filtered_data/activas.csv", "r")) !== FALSE) {
         $n = 1;
         $stmt = $db->prepare('INSERT INTO activa (pago_id,id_suscripcion) VALUES (?,?)');   
 
