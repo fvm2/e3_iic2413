@@ -17,7 +17,7 @@ catch (PDOException $e) {
 }
 
 
-$handle = fopen("videojuegos.csv", "r");
+$handle = fopen("./csv_originales/pares/filtered_data/videojuegos.csv", "r");
 if ($handle !== FALSE) {
     $n = 1;
     $stmt = $db->prepare('INSERT INTO videojuegos (id_videojuego,titulo,puntuacion,clasificacion,fecha_de_lanzamiento,beneficio_preorden) VALUES (?, ?, ?, ?, ?, ?)');
