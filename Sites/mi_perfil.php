@@ -2,7 +2,7 @@
 
 <body>
 <?php
-require("../config/conexion.php");
+require("config/conexion.php");
 
 // Obtener información del usuario
 $query = ";";
@@ -15,15 +15,14 @@ $dataCollected = $result -> fetchAll();
 $createViewQuery = "
     CREATE MATERIALIZED VIEW IF NOT EXISTS user_profile_view AS
     SELECT
-        u.name,
-        u.email,
+        u.nombre,
+        u.mail,
         u.username,
-        s.subscription_type,
-        s.purchase_date,
         s.hours_used,
-        u.age
+        u.fecha_nacimiento,
+
     FROM
-        usuarios u, suscripciones s
+        usuarios u, suscripciones s, 
     WHERE
         # fecha compra no null
         AND u.id = s.
