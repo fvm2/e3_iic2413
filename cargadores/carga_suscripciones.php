@@ -23,7 +23,7 @@ if (($handle = fopen("data/pares/filtered_data/suscripciones.csv", "r")) !== FAL
     while (($row = fgetcsv($handle)) !== FALSE) {
         if ($n > 1) {
             $pago_id = $row[0];
-            if (!llaveforanea($pago_id, $db)) {
+            if (!llaveforanea($pago_id, 'pago_id', $db, 'pagos')) {
                 $errorMessage = "pago_id $pago_id no existe en la tabla pagos, fila $n";
                 error_log($errorMessage, 3, $logFile);
                 $n++;
@@ -31,7 +31,7 @@ if (($handle = fopen("data/pares/filtered_data/suscripciones.csv", "r")) !== FAL
             }
 
             try {
-                $stmt->execute($row);
+                $stmt->execute([$row[0], $row[1], $row[2], $row[3]]); 
             } catch (PDOException $ex) {
                 $db->rollBack();
                 $errorMessage = "Error en la fila $n: " . $ex->getMessage();
@@ -48,9 +48,9 @@ if (($handle = fopen("data/pares/filtered_data/suscripciones.csv", "r")) !== FAL
     fclose($handle);
 }
 
-function llaveforanea($pago_id, $db) {
-    $stmt = $db->prepare("SELECT COUNT(*) FROM pagos WHERE pago_id = ?");
-    $stmt->execute([$pago_id]);
+function llaveforanea($clave, $id, $db, $tabla) {
+    $stmt = $db->prepare("SELECT COUNT(*) FROM $tabla WHERE $id = ?");
+    $stmt->execute([$clave]);
     return $stmt->fetchColumn() > 0;
 }
 ?>

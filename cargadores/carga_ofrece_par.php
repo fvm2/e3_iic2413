@@ -39,7 +39,15 @@ if (($handle = fopen("data/pares/filtered_data/ofrece.csv", "r")) !== FALSE) {
 
             try {
                 // Asegúrate de que el orden de los elementos en $row coincida con tu consulta SQL
-                $stmt->execute([$row[0], $row[1], $row[2], $row[3]]); 
+                $param3 = (float)$row[2];
+                $param4 = (float)$row[3];
+
+                $stmt->bindParam(1, $row[0], PDO::PARAM_INT);
+                $stmt->bindParam(2, $row[1], PDO::PARAM_INT);
+                $stmt->bindParam(3, $param3, PDO::PARAM_STR);
+                $stmt->bindParam(4, $param4, PDO::PARAM_STR);
+
+                $stmt->execute();
             } catch (PDOException $ex) {
                 $db->rollBack();
                 $errorMessage = "Error en la fila $n: " . $ex->getMessage();

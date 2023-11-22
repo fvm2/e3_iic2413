@@ -2,20 +2,26 @@
 
 <body>
     <div class='main'>
-        <h1 class='title' style="color:#008080" align="center">Nombre proveedor</h1>
-        
-        <!-- -->
-        <!-- si es de Videojuegos-->
+        <h1 class='title' style="color:#008080" align="center">Información del proveedor</h1>
+        <?php
+           $idProveedor = $_GET['id']; 
+        ?>
+        <p>
+          <?php
+          #Llama a conexión, crea el objeto PDO y obtiene la variable $db
+          require("config/conexion.php");
+          $query = "SELECT nombre
+                    FROM proveedores
+                    WHERE id = $idProveedor";
+
+          $result = $db -> prepare($query);
+          $result -> execute();
+          $dataCollected = $result -> fetchAll();
+          ?>
+        </p>
         <div class="card" style="width: 18rem; margin-right: 10rem; margin-left: 10rem;" >
             <div class="card-body">
-                <p class="card-text">Precio</p>
-                <p class="card-text">Cantidad de videojuegos</p>
-            </div>
-        </div>
-        <!-- si es de streaming-->
-        <div class="card" style="width: 18rem; margin-right: 10rem; margin-left: 10rem;" >
-            <div class="card-body">
-                <p class="card-text">Precio</p>
+                <p class="card-text">Nombre: <?php echo $dataCollected[0]['nombre']?></p>
                 <p class="card-text">Cantidad de Peliculas</p>
                 <p class="card-text">Cantidad de Series</p>
             </div>
@@ -86,4 +92,3 @@
   <br>
   <br>
 </body>
-</html>

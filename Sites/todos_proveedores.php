@@ -3,14 +3,39 @@
 <body>
     <div class='main'>
         <h1 class='title' style="color:#008080" align="center">Listas de proveedores</h1>
-        <p style="text-align:center;">
-          En esta pagina debe haber un listados de todos los proveedores con un link 
-          que lleve a una pagina con todos sus datos 
+        <h3 align="center"> Proveedores de Streaming </h3>
+        <p>
+          <?php
+          #Llama a conexión, crea el objeto PDO y obtiene la variable $db
+          require("config/conexion.php");
+          $query = "SELECT id, nombre
+                    FROM proveedores";
+
+          $result = $db -> prepare($query);
+          $result -> execute();
+          $dataCollected = $result -> fetchAll();
+          ?>
+          <div style="display: flex; justify-content: center;">
+            <table>
+                <tr>
+                    <th>Proveedores</th>
+                </tr>
+                <?php
+                foreach ($dataCollected as $p) {
+                    echo "<tr> <td><a href='proveedor.php?id=$p[0]'>$p[1]</a></td>  </tr>";
+                }
+                ?>
+              
+            </table>
+          </div>
         </p>
+
 
     </div>
   <br>
   <br>
   <br>
 </body>
-</html>
+
+<?php include('templates/footer.html'); ?>
+
