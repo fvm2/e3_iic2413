@@ -11,7 +11,7 @@
 
     $query = "SELECT nombre, mail, username, fecha_nacimiento
               FROM usuarios
-              WHERE id = $idUsuario";
+              WHERE id_usuario = $idUsuario;";
 
     $result = $db -> prepare($query);
     $result -> execute();
@@ -46,6 +46,7 @@
     <!-- y cantidad de horas jugadas -->
     <?php
     // Obtener suscripciones activas de videojuegos desde una vista materializada
+    // ESTE ES EL UNICO QUE NO FUNCIONA, DEBE SER POR ERROR DE LA VISTA
     $queryVideojuegos = "SELECT titulo FROM vj_activesubs WHERE id_usuario = $idUsuario;";
     $resultVideojuegos = $db2->prepare($queryVideojuegos);
     $resultVideojuegos->execute();

@@ -59,16 +59,16 @@
         <br>
         <!-- Form -->
         <div class='container' style="width: 70%">
-            <h3>Ver base de datos 1</h3>
-            <form  action='./queries/prodecimiento01.php' method='GET'>
-            <div class="mb-3">
-                <label for="nombreProveedor" class="form-label">Nombre del proveedor</label>
-                <input type="text" class="form-control form-control-lg" id="nombreProveedor" placeholder="proovedor">
-            </div>
-            <div class="mb-3">
-                <label for="nombreEvento" class="form-label">Nombre del contenido de entretenimiento</label>
-                <input type="text" class="form-control form-control-lg" id="nombreEvento" placeholder="peliculas, series o videojuegos">
-            </div>
+            <h3>¡Busca tus peliculas y series favoritas!</h3>
+            <form action='consultas/buscador_streaming.php' method='GET'>
+                <div class="mb-3">
+                    <label for="nombreProveedor" class="form-label">Nombre del proveedor</label>
+                    <input type="text" class="form-control form-control-lg" id="nombreProveedor" name="nombreProveedor" placeholder="Proveedor">
+                </div>
+                <div class="mb-3">
+                    <label for="nombreEvento" class="form-label">Nombre de tu peliucla o serie</label>
+                    <input type="text" class="form-control form-control-lg" id="nombreEvento" name="nombreEvento" placeholder="Películas o series">
+                </div>
                 <input class='btn' type='submit' value='Consultar'>
             </form>
         </div>
