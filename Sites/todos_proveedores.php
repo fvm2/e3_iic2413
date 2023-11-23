@@ -2,8 +2,7 @@
 
 <body>
     <div class='main'>
-        <h1 class='title' style="color:#008080" align="center">Listas de proveedores</h1>
-        <h3 align="center"> Proveedores de Streaming </h3>
+        <h1 class='title' style="color:#008080" align="center">Proveedores de Streaming</h1>
         <p>
           <?php
           #Llama a conexión, crea el objeto PDO y obtiene la variable $db
