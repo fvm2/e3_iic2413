@@ -14,6 +14,7 @@
             <div class='row'>
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <div class="card h-100" style="width: 15rem; background-color: #008080;" >
+                    <img src="/Sites/imgs/axolote.JPG" class="card-img-top" alt="axolote">
                     <div class="card-body">
                         <h5 class="card-title">Mi perfil</h5>
                         <p class="card-text">Acaba vas a poder la informacion del usuario, sus suscripciones 
