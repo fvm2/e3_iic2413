@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // aquí agregar codigo agregar usuario a la tabla
     $query = "INSERT INTO usuarios (id_usuario, nombre, username, mail, password, fecha_nacimiento)
-              VALUES usuarios (:id_usuario, :nombre, :username, :mail, :password, :fecha_nacimiento);";
+              VALUES (:id_usuario, :nombre, :username, :mail, :password, :fecha_nacimiento);";
 
     $stmt = $db->prepare($query);
 
@@ -35,7 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt -> bindParam(':password', $encryptedPassword, PDO::PARAM_STR);
     $stmt -> bindParam(':fecha_nacimiento', $fecha_nacimiento, PDO::PARAM_STR);
 
-    $stmt -> execute();
-    $dataCollected = $stmt -> fetchAll();
+    
+    try {
+        $stmt -> execute();
+        // Redirige al usuario a la página de inicio de sesión después de registrarse
+        header("Location: login.php");
+    } catch(PDOException $e) {
+        // Maneja los errores que pueden ocurrir durante la ejecución de la consulta
+        echo "Error: " . $e->getMessage();
+    }
 }
 ?>

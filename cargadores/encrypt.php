@@ -10,7 +10,7 @@ $db_user_91 = 'grupo91';
 $db_password_91 = 'roberto_javi';
 $db_name_91 = 'grupo91e3';
 
-\\ Carga para el grupo 91
+# Carga para el grupo 91
 $db_91 = new PDO("pgsql:dbname=$db_name_91;host=$db_host;port=5432;user=$db_user_91;password=$db_password_91");
 
 $stmt_91 = $db_91->query('SELECT * FROM usuarios');
@@ -24,21 +24,22 @@ foreach ($users_91 as $user) {
     $stmt->execute([$encryptedPassword, $user['id_usuario']]);
 }
 
-\\ Carga para el grupo 98
-$db_98 = new PDO("pgsql:dbname=$db_name_98;host=$db_host;port=5432;user=$db_user_98;password=$db_password_98");
+# Carga para el grupo 98
+# $db_98 = new PDO("pgsql:dbname=$db_name_98;host=$db_host;port=5432;user=$db_user_98;password=$db_password_98");
+# 
+# $stmt_98 = $db_98->query('SELECT * FROM usuarios');
+# $users_98 = $stmt_98->fetchAll(PDO::FETCH_ASSOC);
+# 
+# foreach ($users_98 as $user) {
+      # con esto no es necesario generar salt
+      # y se puede usar password_verify en vez del metodo en validar_login.php
+#     $hashedPassword = password_hash($user['password'], PASSWORD_DEFAULT);
+# 
+#     $stmt = $db_98->prepare('UPDATE usuarios SET password = ? WHERE id_usuario = ?');
+#     $stmt->execute([$encryptedPassword, $user['id_usuario']]);
+# }
 
-$stmt_98 = $db_98->query('SELECT * FROM usuarios');
-$users_98 = $stmt_98->fetchAll(PDO::FETCH_ASSOC);
-
-foreach ($users_98 as $user) {
-    $salt = generateSalt();
-    $encryptedPassword = crypt($user['password'], $salt);
-
-    $stmt = $db_98->prepare('UPDATE usuarios SET password = ? WHERE id_usuario = ?');
-    $stmt->execute([$encryptedPassword, $user['id_usuario']]);
-}
-
-\\ Función para generar salt
+# Función para generar salt
 function generateSalt() {
     $salt = '';
     $saltChars = array_merge(range('A','Z'), range('a','z'), range(0,9));

@@ -75,7 +75,7 @@
     $dataStreaming = $resultStreaming -> fetchAll();
     // Obtener suma de horas vistas en películas y series
     $queryHorasPeliculas = "SELECT horas FROM horas_pelis_user WHERE id_usuario = :idUsuario;";
-    $resultHorasPeliculas = $db -> prepare($queryHorasPeliculasSeries);
+    $resultHorasPeliculas = $db -> prepare($queryHorasPeliculas);
     $resultHorasPeliculas -> bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
     $resultHorasPeliculas -> execute();
     $horasPeliculas = $resultHorasPeliculas -> fetchColumn();
