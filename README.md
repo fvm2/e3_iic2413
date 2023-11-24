@@ -1,9 +1,6 @@
 # e3_iic2413
 
-Entrega 3 Bases de Datos
-
-<h2>Consideraciones:</h2>
-- En csv_originales se encuentran los datos crudos y filtrados para la DB de pares e impares
+<h1> Entrega 3 Bases de Datos </h1>
 
 ### Cosas implementadas y no implementadas :white_check_mark: :x:
 
@@ -41,15 +38,15 @@ Entrega 3 Bases de Datos
 
 ##### ✅ Trending de películas y series
 
-##### 🟠 Buscador case insensitive y con match parcial
+##### ✅ Buscador case insensitive y con match parcial
 
 #### Compras:
 
 ##### ✅ Lista de películas y videojuegos
 
-##### ❌ Detalles y precios
+##### ✅ Detalles y precios
 
-##### ❌ Dropdown de proveedores y botón de compra
+##### ✅ Dropdown de proveedores y botón de compra
 
 ##### ❌ Lógica de la Transacción, con triggers y stored procedures
 

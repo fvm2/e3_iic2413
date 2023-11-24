@@ -1,23 +1,30 @@
-<?php include('templates/header.html');   ?>
-<?php include('config/conexion.php');   ?>
+<?php 
+include('templates/header.html');
+include('config/conexion.php');   
+session_start();
+?>
 
 <body>
     <h1 style="color: #008080;">Mi perfil</h1></br></br>
     <!-- ------------------------------------------------------------------- -->
     <!-- Pon aca la logica de las consultas sobre los datos del Usuario -->
     <?php
-    $idUsuario = $_GET['id'];
-    $idUsuario = intval($idUsuario);
+    if (isset($_SESSION['id_usuario'])) {
+        $id_usuario = $_SESSION['id_usuario'];
+        echo $id_usuario;
 
-    $query = "SELECT nombre, mail, username, fecha_nacimiento
-              FROM usuarios
-              WHERE id_usuario = :idUsuario;";
+        $query = "SELECT nombre, mail, username, fecha_nacimiento
+                  FROM usuarios
+                  WHERE id_usuario = :id_usuario;";
 
-    $result = $db -> prepare($query);
-    # Lo siguiente protege el input de la consulta
-    $result -> bindParam(':idUsuario', $idUsuario, PDO::PARAM_STR);
-    $result -> execute();
-    $dataCollected = $result -> fetchAll();
+        $result = $db -> prepare($query);
+        # Lo siguiente protege el input de la consulta
+        $result -> bindParam(':id_usuario', $id_usuario, PDO::PARAM_STR);
+        $result -> execute();
+        $dataCollected = $result -> fetchAll();
+    } else {
+        echo "No se ha iniciado sesión";
+    }
     ?>
 
     <!-- ----------------------------------- -->
