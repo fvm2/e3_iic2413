@@ -12,31 +12,35 @@
           require("config/conexion.php");
           $query = "SELECT nombre
                     FROM proveedores
-                    WHERE id = $idProveedor";
+                    WHERE id = :idProveedor";
 
           $result = $db -> prepare($query);
+          $result -> bindParam(':idProveedor', $idProveedor, PDO::PARAM_INT);
           $result -> execute();
           $dataCollected = $result -> fetch();
 
           $queryCantidad = "SELECT COUNT(*) AS peliculas_activas
                             FROM pelis_provee
-                            WHERE id_proveedor = $idProveedor
+                            WHERE id_proveedor = :idProveedor
                             AND incluida = TRUE";
           $result1 = $db -> prepare($queryCantidad);
+          $result1 -> bindParam(':idProveedor', $idProveedor, PDO::PARAM_INT);
           $result1 -> execute();
           $CantidadPeliculas = $result1 -> fetch();
 
           $queryseries = "SELECT COUNT(*) AS series_dispo
                           FROM series_provee
-                          WHERE id_proveedor = $idProveedor";
+                          WHERE id_proveedor = :idProveedor";
           $result2 = $db -> prepare($queryseries);
+          $result2 -> bindParam(':idProveedor', $idProveedor, PDO::PARAM_INT);
           $result2 -> execute();
           $CantidadSeries = $result2 -> fetch();
 
           $querycosto = "SELECT DISTINCT costo
                          FROM suscripciones
-                         WHERE pro_id = $idProveedor";
+                         WHERE pro_id = :idProveedor";
           $result3 = $db -> prepare($querycosto);
+          $result3 -> bindParam(':idProveedor', $idProveedor, PDO::PARAM_INT);
           $result3 -> execute();
           $Costo = $result3 -> fetch();
           ?>

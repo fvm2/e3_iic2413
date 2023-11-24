@@ -12,9 +12,11 @@
                 FROM pelis_provee pp 
                 JOIN peliculas p ON p.id=pp.id_pelicula 
                 JOIN proveedores pr ON pp.id_proveedor=pr.id 
-                WHERE LOWER(pr.nombre) LIKE LOWER('$nombreProveedor')
-                AND LOWER(p.nombre) LIKE LOWER('$nombreEvento')";
+                WHERE LOWER(pr.nombre) LIKE LOWER(':nombreProveedor')
+                AND LOWER(p.nombre) LIKE LOWER(':nombreEvento')";
     $result = $db -> prepare($query);
+    $result -> bindParam(':nombreProveedor', $nombreProveedor, PDO::PARAM_STR);
+    $result -> bindParam(':nombreEvento', $nombreEvento, PDO::PARAM_STR);
     $result -> execute();
     $dataCollected = $result -> fetchAll();
     ?>

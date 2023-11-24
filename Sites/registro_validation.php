@@ -5,9 +5,9 @@ include('../cargadores/encrypt.php');
 
 // Encontrar el mayor id_usuario en la tabla usuarios
 $query = "SELECT MAX(id_usuario) FROM usuarios;";
-$stmt = $db->prepare($query);
-$stmt->execute();
-$max_id = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt = $db -> prepare($query);
+$stmt -> execute();
+$max_id = $stmt -> fetch(PDO::FETCH_ASSOC);
 $id_usuario = $max_id['MAX(id_usuario)'] + 1;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -28,13 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt = $db->prepare($query);
 
-    $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
-    $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-    $stmt->bindParam(':mail', $email, PDO::PARAM_STR);
-    $stmt->bindParam(':password', $encryptedPassword, PDO::PARAM_STR);
-    $stmt->bindParam(':fecha_nacimiento', $fecha_nacimiento, PDO::PARAM_STR);
+    $stmt -> bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+    $stmt -> bindParam(':nombre', $nombre, PDO::PARAM_STR);
+    $stmt -> bindParam(':username', $username, PDO::PARAM_STR);
+    $stmt -> bindParam(':mail', $email, PDO::PARAM_STR);
+    $stmt -> bindParam(':password', $encryptedPassword, PDO::PARAM_STR);
+    $stmt -> bindParam(':fecha_nacimiento', $fecha_nacimiento, PDO::PARAM_STR);
 
-    $stmt->execute();
+    $stmt -> execute();
+    $dataCollected = $stmt -> fetchAll();
 }
 ?>

@@ -7,9 +7,10 @@ $idPeli = $_GET['id'];
 require("config/conexion.php");
 $query = "SELECT nombre
           FROM peliculas
-          WHERE id = $idPeli";
+          WHERE id = :idPeli";
 
 $result = $db -> prepare($query);
+$result -> bindParam(':idPeli', $idPeli, PDO::PARAM_INT);
 $result -> execute();
 $dataCollected = $result -> fetchAll();
 ?>

@@ -51,9 +51,8 @@ $dataCollected = $result_original -> fetchAll();
                     require("config/conexion.php");
 
                     $query_p = " SELECT DISTINCT P.id, P.nombre
-                        FROM pelis_vende as PelisV, peliculas as P
-                        WHERE P.id = PelisV.id_pelicula
-                        ";
+                                 FROM pelis_vende as PelisV, peliculas as P
+                                 WHERE P.id = PelisV.id_pelicula;";
 
                     $result_p = $db -> prepare($query_p);
                     $result_p -> execute();
@@ -81,10 +80,9 @@ $dataCollected = $result_original -> fetchAll();
                 <?php 
                     require("config/conexion.php");
 
-                    $query_v = " SELECT DISTINCT O.id_videojuego, V.titulo
-                        FROM ofrece as O, videojuegos as V
-                        WHERE O.id_videojuego = V.id_videojuego
-                        ";
+                    $query_v = "SELECT DISTINCT O.id_videojuego, V.titulo
+                                FROM ofrece as O, videojuegos as V
+                                WHERE O.id_videojuego = V.id_videojuego;";
 
                     $result_v = $db2 -> prepare($query_v);
                     $result_v -> execute();

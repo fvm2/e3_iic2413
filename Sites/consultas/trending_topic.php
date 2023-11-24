@@ -33,13 +33,14 @@
             JOIN
                 pelis_provee pp ON pv.id = pp.id_pelicula
             WHERE
-                pp.id_proveedor = $idProveedor
+                pp.id_proveedor = :idProveedor
                 AND pp.incluida = true
             ORDER BY
                 visualizaciones DESC
             LIMIT 3";          
     
     $result = $db -> prepare($query);
+    $result -> bindParam(':idProveedor', $idProveedor, PDO::PARAM_INT);
     $result -> execute();
     $dataCollected = $result -> fetchAll();
 
@@ -74,10 +75,11 @@
     JOIN
         series_provee sp ON svmv.id = sp.id_serie
     WHERE
-        sp.id_proveedor = $idProveedor
+        sp.id_proveedor = :idProveedor
     ORDER BY svmv.visualizaciones DESC
     LIMIT 3";
     $result1 = $db -> prepare($query1);
+    $result1 -> bindParam(':idProveedor', $idProveedor, PDO::PARAM_INT);
     $result1 -> execute();
     $dataCollected1 = $result1 -> fetchAll();
     ?>

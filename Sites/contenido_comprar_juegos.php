@@ -8,18 +8,19 @@ $idVideoJuegos = $_GET['id'];
 require("config/conexion.php");
 $query = "SELECT titulo, puntuacion, clasificacion, fecha, beneficio_preorden
           FROM videojuegos
-          WHERE id_videojuego = $idVideoJuegos";
-
+          WHERE id_videojuego = :idVideoJuegos";
 
 $result = $db2 -> prepare($query);
+$result -> bindParam(':idVideoJuegos', $idVideoJuegos, PDO::PARAM_INT)
 $result -> execute();
 $dataCollected = $result -> fetchAll();
 
 $queryVideojuegos_Genero = "SELECT genero
                             FROM vj_genero
-                            WHERE id_videojuego = $idVideoJuegos";
+                            WHERE id_videojuego = :idVideoJuegos";
 
 $resultVideojuegos_Genero = $db2 -> prepare($queryVideojuegos_Genero);
+$resultVideojuegos_Genero -> bindParam(':idVideoJuegos', $idVideoJuegos, PDO::PARAM_INT)
 $resultVideojuegos_Genero -> execute();
 $videojuegos_genero = $resultVideojuegos_Genero -> fetchAll();
 
@@ -66,11 +67,12 @@ $videojuegos_genero = $resultVideojuegos_Genero -> fetchAll();
 
 
         $queryVideojuegos_Proveedor = "SELECT p.nombre, o.precio, p.id_proveedor
-                                    FROM ofrece as o, proveedoresvj as p
-                                    WHERE o.id_videojuego = $idVideoJuegos
-                                    AND o.id_proveedor = p.id_proveedor";
+                                       FROM ofrece as o, proveedoresvj as p
+                                       WHERE o.id_videojuego = :idVideoJuegos
+                                       AND o.id_proveedor = p.id_proveedor";
 
         $resultVideojuegos_Proveedor = $db2 -> prepare($queryVideojuegos_Proveedor);
+        $resultVideojuegos_Proveedor -> bindParam(':idVideoJuegos', $idVideoJuegos, PDO::PARAM_INT)
         $resultVideojuegos_Proveedor -> execute();
         $videojuegos_proveedor = $resultVideojuegos_Proveedor -> fetchAll();
         ?>
